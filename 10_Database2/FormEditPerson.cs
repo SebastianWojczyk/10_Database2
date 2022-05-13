@@ -23,6 +23,11 @@ namespace _10_Database2
             this.person = person;
             textBoxName.Text = person.Name;
             dateTimePickerDrivingLicense.Value = person.DateDrivingLicense;
+
+            foreach (Car c in person.Cars)
+            {
+                flowLayoutPanelCars.Controls.Add(new UserControlCar(c));
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -35,9 +40,20 @@ namespace _10_Database2
             }
             person.Name = textBoxName.Text;
             person.DateDrivingLicense = dateTimePickerDrivingLicense.Value;
-            
+
+            foreach (UserControlCar u in flowLayoutPanelCars.Controls)
+            {
+                u.prepareCarSave(person);
+            }
+
             FormMain.DatabaseDT.SubmitChanges();
             DialogResult = DialogResult.OK;
+        }
+
+        private void buttonAddCar_Click(object sender, EventArgs e)
+        {
+            UserControlCar ucc = new UserControlCar();
+            flowLayoutPanelCars.Controls.Add(ucc);
         }
     }
 }
