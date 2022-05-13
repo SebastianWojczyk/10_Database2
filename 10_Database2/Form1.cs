@@ -19,7 +19,7 @@ namespace _10_Database2
     )
     CREATE TABLE [dbo].[Car]
     (
-        [Id] INT NOT NULL PRIMARY KEY, 
+        [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
         [Mark] NVARCHAR(50) NOT NULL, 
         [Price] DECIMAL(18, 2) NOT NULL, 
         [PersonId] INT NOT NULL, 
